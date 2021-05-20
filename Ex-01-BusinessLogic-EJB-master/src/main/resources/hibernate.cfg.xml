@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+       <!-- DB information -->
+       <!--<property name="connection.url">jdbc:mariadb://127.0.0.1:3306/test</property>-->
+       <property name="connection.url">jdbc:mariadb://127.0.0.1:3306/myds</property>
+
+       <property name="connection.username">ste</property>
+       <property name="connection.password">sistemidb</property>
+
+       <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
+       <property name="dialect">org.hibernate.dialect.MariaDB103Dialect</property>
+
+       <property name="show_sql">true</property>
+       <property name="format_sql">true</property>
+       <property name="hbm2ddl.auto">create</property>
+
+       <!-- JDBC connection pool (use the built-in) -->
+       <property name="connection.pool_size">10</property>
+       <!--<property name="current_session_context_class">thread</property>-->
+      <mapping class="it.distributedsystems.model.ejb.Employee" />
+      <mapping class="it.distributedsystems.model.ejb.Department" />
+
+       <mapping class="it.distributedsystems.model.dao.Customer" />
+       <mapping class="it.distributedsystems.model.dao.Producer" />
+       <mapping class="it.distributedsystems.model.dao.Product" />
+       <mapping class="it.distributedsystems.model.dao.Purchase" />
+   </session-factory>
+</hibernate-configuration>
