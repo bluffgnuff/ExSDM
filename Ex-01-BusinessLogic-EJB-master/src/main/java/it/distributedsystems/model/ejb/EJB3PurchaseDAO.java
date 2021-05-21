@@ -41,9 +41,9 @@ public class EJB3PurchaseDAO implements PurchaseDAO {
             purchase.setCustomer(em.merge(purchase.getCustomer()));
 
         //riattacco i product al contesto di persistenza
-        for (Product p : products)
-            if (p != null && p.getId() > 0) {
-                purchase.addProduct(em.merge(p));
+        for (Product product : products)
+            if (product != null && product.getId() > 0) {
+                purchase.addProduct(em.merge(product));
             }
 
         em.persist(purchase);
