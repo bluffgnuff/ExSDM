@@ -1,15 +1,10 @@
 package it.distributedsystems.model.ejb;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.naming.InitialContext;
-
 import it.distributedsystems.model.dao.*;
 import org.apache.log4j.Logger;
 
 public class EJB3DaoFactory extends DAOFactory {
-   // @EJB(beanName = "EJB3CustomerDAO")
-    //CustomerDAO customerDAO;
     private static Logger logger = Logger.getLogger("DAOFactory");
 
     public EJB3DaoFactory() {
