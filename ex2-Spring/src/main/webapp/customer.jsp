@@ -1,4 +1,4 @@
-<%@ page import="dao.dao.*" %>
+<%@ page import="dao.*" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="java.util.*" %>
