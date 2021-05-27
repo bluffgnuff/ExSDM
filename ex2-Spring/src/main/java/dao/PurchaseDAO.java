@@ -1,7 +1,8 @@
-package model.dao;
+package dao;
+
+import model.*;
 
 import java.util.List;
-import java.util.Set;
 
 public interface PurchaseDAO {
 

@@ -1,4 +1,8 @@
-package model.dao;
+package dao;
+
+import model.Producer;
+import model.Product;
+import model.Purchase;
 
 import java.util.List;
 

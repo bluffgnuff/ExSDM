@@ -1,4 +1,6 @@
-package model.dao;
+package model;
+
+import model.Product;
 
 import java.util.Set;
 

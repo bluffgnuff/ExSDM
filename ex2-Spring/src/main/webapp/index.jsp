@@ -1,6 +1,11 @@
 <%@ page session="true" %>
 <%@ page import="java.util.*" %>
-<%@ page import="it.distributedsystems.model.dao.*" %>
+<%@ page import="dao.*" %>
+<%@ page import="model.Producer" %>
+<%@ page import="model.Product" %>
+<%@ page import="dao.ProducerDAO" %>
+<%@ page import="dao.ProductDAO" %>
+<%@ page import="dao.PurchaseDAO" %>
 
 
 <%!
@@ -66,12 +71,12 @@
         Customer customer = new Customer();
         customer.setName(request.getParameter("name"));
         int id = customerDAO.insertCustomer(customer);
-        out.println("<!-- inserted customer '" + customer.getName() + "', with id = '" + id + "' -->");
+        //out.println("<!-- inserted customer '" + customer.getName() + "', with id = '" + id + "' -->");
     } else if (operation != null && operation.equals("insertProducer")) {
         Producer producer = new Producer();
         producer.setName(request.getParameter("name"));
         int id = producerDAO.insertProducer(producer);
-        out.println("<!-- inserted producer '" + producer.getName() + "', with id = '" + id + "' -->");
+        //out.println("<!-- inserted producer '" + producer.getName() + "', with id = '" + id + "' -->");
     } else if (operation != null && operation.equals("insertProduct")) {
         Product product = new Product();
         int price;
@@ -83,7 +88,7 @@
         Producer producer = producerDAO.findProducerById(Integer.parseInt(request.getParameter("producer")));
         product.setProducer(producer);
         int id = productDAO.insertProduct(product);
-        out.println("<!-- inserted product '" + product.getName() + "' with id = '" + id + "' -->");
+        //out.println("<!-- inserted product '" + product.getName() + "' with id = '" + id + "' -->");
     }
 %>
 

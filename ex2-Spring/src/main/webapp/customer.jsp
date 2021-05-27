@@ -1,7 +1,13 @@
-<%@ page import="it.distributedsystems.model.dao.*" %>
+<%@ page import="dao.dao.*" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
 <%@ page import="java.util.*" %>
+<%@ page import="model.Product" %>
+<%@ page import="model.Purchase" %>
+<%@ page import="model.Cart" %>
+<%@ page import="dao.DAOFactory" %>
+<%@ page import="dao.ProductDAO" %>
+<%@ page import="dao.PurchaseDAO" %>
 <%@ page session="true" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -57,13 +63,13 @@
         int id = Integer.parseInt(request.getParameter("idCustomer"));
         Customer customer = customerDAO.findCustomerById(id);
         cart.setCustomer(customer);
-        out.println("<!-- selected customer '" + customer.getName() + "', with id = '" + id + "' -->");
+        //out.println("<!-- selected customer '" + customer.getName() + "', with id = '" + id + "' -->");
     } else if (operation != null && operation.equals("addToCart")) {
         int id = Integer.parseInt(request.getParameter("idProduct"));
 
         Product product = productDAO.findProductById(id);
         cart.addProduct(product);
-        out.println("<!-- added product '" + product.getName() + "' with id = '" + id + "' -->");
+        //out.println("<!-- added product '" + product.getName() + "' with id = '" + id + "' -->");
     } else if (operation != null && operation.equals("orderConfirm")) {
         int ran = new Random().nextInt();
         Purchase purchase = new Purchase(ran);
@@ -72,7 +78,7 @@
 
         purchaseDAO.insertPurchase(purchase);
         cart.setProducts(new HashSet<>());
-        out.println("<!-- added purchase '" + purchase.getPurchaseNumber() + "' with id = '" + purchase.getId() + "' -->");
+        //out.println("<!-- added purchase '" + purchase.getPurchaseNumber() + "' with id = '" + purchase.getId() + "' -->");
     } else if (operation != null && operation.equals("orderAbort")) {
         cart.setProducts(new HashSet<>());
     }

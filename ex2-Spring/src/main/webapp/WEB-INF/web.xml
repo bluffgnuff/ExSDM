@@ -7,7 +7,7 @@
 
     <display-name>Progetto Sistemi Distribuiti LS</display-name>
     <description>
-      A sample EJB3 realization
+      A sample Spring realization
     </description>
 
 	<welcome-file-list>
@@ -18,7 +18,7 @@
 
 	<context-param>
 		<param-name>dao</param-name>
-		<param-value>it.distributedsystems.model.ejb.EJB3DaoFactory</param-value>
+		<param-value>model.ejb.EJB3DaoFactory</param-value>
 	</context-param>
 
 	<!-- Handle exceptions and errors -->
