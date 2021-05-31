@@ -1,18 +1,18 @@
-package dao;
+package service;
 
-import model.*;
-import org.springframework.stereotype.Repository;
+import model.Customer;
+import model.Product;
+import model.Purchase;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
-public interface PurchaseDAO {
+@Service
+public interface PurchaseService {
 
-    public int insertPurchase(Purchase purchase);
+    public int savePurchase(Purchase purchase);
 
-    //public int removePurchaseByNumber(int purchaseNumber);
-
-    public int removePurchaseById(int id);
+    public int deletePurchaseById(int id);
 
     public Purchase findPurchaseByNumber(int purchaseNumber);
 

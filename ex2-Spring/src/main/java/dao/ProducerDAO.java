@@ -1,9 +1,12 @@
 package dao;
 
 import model.Producer;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ProducerDAO {
 
     public int insertProducer(Producer producer);

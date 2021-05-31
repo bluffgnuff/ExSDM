@@ -1,21 +1,20 @@
-package dao;
+package controller;
 
 import model.Producer;
 import model.Product;
 import model.Purchase;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Repository
-public interface ProductDAO {
+@RestController
+public interface ProductController {
 
-    public int insertProduct(Product product);
+    public int saveProduct(Product product);
 
-    public int removeProductByNumber(int productNumber);
+    public int deleteProductByNumber(int productNumber);
 
-    public int removeProductById(int id);
+    public int deleteProductById(int id);
 
     public Product findProductByNumber(int productNumber);
 

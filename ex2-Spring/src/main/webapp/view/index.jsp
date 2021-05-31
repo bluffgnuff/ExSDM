@@ -1,11 +1,7 @@
 <%@ page session="true" %>
 <%@ page import="java.util.*" %>
 <%@ page import="dao.*" %>
-<%@ page import="model.Producer" %>
-<%@ page import="model.Product" %>
-<%@ page import="dao.ProducerDAO" %>
-<%@ page import="dao.ProductDAO" %>
-<%@ page import="dao.PurchaseDAO" %>
+<%@ page import="model.*" %>
 
 
 <%!
@@ -51,7 +47,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <meta name="Author" content="you">
 
-    <link rel="StyleSheet" href="styles/default.css" type="text/css" media="all"/>
+    <link rel="StyleSheet" href="../styles/default.css" type="text/css" media="all"/>
 
 </head>
 
