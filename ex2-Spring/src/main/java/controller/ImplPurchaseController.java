@@ -3,42 +3,48 @@ package controller;
 import model.Customer;
 import model.Product;
 import model.Purchase;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.PurchaseService;
 
 import java.util.List;
 
 public class ImplPurchaseController implements  PurchaseController{
+
+    @Autowired
+    private PurchaseService purchaseService;
+
     @Override
     public int savePurchase(Purchase purchase) {
-        return 0;
+        return purchaseService.savePurchase(purchase);
     }
 
     @Override
     public int deletePurchaseById(int id) {
-        return 0;
+        return purchaseService.deletePurchaseById(id);
     }
 
     @Override
     public Purchase findPurchaseByNumber(int purchaseNumber) {
-        return null;
+        return purchaseService.findPurchaseByNumber(purchaseNumber);
     }
 
     @Override
     public Purchase findPurchaseById(int id) {
-        return null;
+        return purchaseService.findPurchaseById(id);
     }
 
     @Override
     public List<Purchase> getAllPurchases() {
-        return null;
+        return purchaseService.getAllPurchases();
     }
 
     @Override
     public List<Purchase> findAllPurchasesByCustomer(Customer customer) {
-        return null;
+        return purchaseService.findAllPurchasesByCustomer(customer);
     }
 
     @Override
     public List<Purchase> findAllPurchasesByProduct(Product product) {
-        return null;
+        return purchaseService.findAllPurchasesByProduct(product);
     }
 }
