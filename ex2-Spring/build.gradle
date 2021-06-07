@@ -14,14 +14,21 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.data:spring-data-rest-hal-explorer'
-    //manually added
-    implementation 'org.springframework.data:spring-data-rest-webmvc:3.5.1'
-    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
-    runtimeOnly 'com.h2database:h2'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //manually added
+    runtimeOnly 'com.h2database:h2'
+    //implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    //compileOnly group: 'javax.servlet', name: 'javax.servlet-api'
+    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 }
 
 test {
