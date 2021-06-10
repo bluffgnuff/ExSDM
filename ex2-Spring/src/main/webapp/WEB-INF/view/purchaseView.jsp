@@ -20,8 +20,8 @@
 
 <div>
     <p>Add Purchase:</p>
-    <form:form method="post" action="/insert-purchase">
-        Name: <form:input path="name"/><br/>
+    <form:form method="post" action="/insert-purchase" modelAttribute="newPurchase">
+        Number: <form:input path="purchaseNumber"/><br/>
         <input type="submit" value="Create"/>
     </form:form>
 </div>

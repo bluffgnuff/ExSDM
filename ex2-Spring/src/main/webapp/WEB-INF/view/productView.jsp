@@ -19,7 +19,7 @@
 
 <div>
     <p>Add Product:</p>
-    <form:form method="post" action="/insert-product">
+    <form:form method="post" action="/insert-product" modelAttribute="newProduct">
         Name: <form:input path="name"/><br/>
         <input type="submit" value="Create"/>
     </form:form>

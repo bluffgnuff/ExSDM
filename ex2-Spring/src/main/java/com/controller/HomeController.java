@@ -10,6 +10,6 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showHomePage(ModelMap model) {
         //TODO:home.jsp
-        return "customerView";
+        return "producerView";
     }
 }

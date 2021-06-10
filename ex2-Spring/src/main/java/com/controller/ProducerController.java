@@ -6,6 +6,7 @@ import com.service.ProducerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProducerController {
@@ -13,16 +14,21 @@ public class ProducerController {
     @Autowired
     ProducerService producerService;
 
+    @RequestMapping(value = "/producerView", method = RequestMethod.GET)
+    public ModelAndView showForm() {
+        return new ModelAndView("producerView", "newProducer", new Producer());
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/insert-producer")
-    public String addProducer(@ModelAttribute("newProducer") Producer producer) {
-        producerService.saveProducer(producer);
+    public String addProducer(@ModelAttribute("newProducer") Producer newProducer) {
+        producerService.saveProducer(newProducer);
         return "producerView";
     }
 
-    @RequestMapping("/producers-read")
+    @RequestMapping("/producer-read")
     public String getProducers(Model model) {
         model.addAttribute("producers",producerService.getAllProducers());
-        return "producerView";
+        return producerService.getAllProducers().toString();
     }
 
     @RequestMapping(value = "/delete-producer/{id}")

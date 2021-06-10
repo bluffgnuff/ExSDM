@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -17,11 +16,11 @@ public class CustomerController {
     @RequestMapping("/customers-read")
     public String getCustomers(Model model) {
         model.addAttribute("customers", customerService.getAllCustomers());
-        return "/customerView";
+        return "customerView";
     }
 
-    @RequestMapping(value = "/insert-customer", method = RequestMethod.POST)
-    public String addCustomer(@ModelAttribute("customer") Customer customer, BindingResult result) {
+    @RequestMapping(method=RequestMethod.POST, value="/insert-customer")
+    public String addCustomer(@ModelAttribute("newCustomer") Customer customer) {
         customerService.saveCustomer(customer);
         return "customerView";
     }

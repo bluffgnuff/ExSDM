@@ -20,8 +20,9 @@
 
 <div>
     <p>Add Producer:</p>
-    <form:form method="post" action="/insert-producer">
-        Name: <form:input path="name"/><br/>
+    <form:form method="POST" action="/insert-producer" modelAttribute="newProducer">
+    <form:label path="name">Name:</form:label>
+        <form:input type="text" path="name"/>
         <input type="submit" value="Create"/>
     </form:form>
 </div>
