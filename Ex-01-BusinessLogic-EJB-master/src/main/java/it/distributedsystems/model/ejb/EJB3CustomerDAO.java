@@ -31,7 +31,7 @@ public class EJB3CustomerDAO implements CustomerDAO {
     public int removeCustomerByName(String name) {
 
         Customer customer;
-        if(name != null && !name.equals("")) {
+        if (name != null && !name.equals("")) {
             customer = (Customer) em.createQuery("FROM Customer c WHERE c.name = :customerName").setParameter("customerName", name).getSingleResult();
             em.remove(customer);
             return customer.getId();
@@ -43,18 +43,17 @@ public class EJB3CustomerDAO implements CustomerDAO {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int removeCustomerById(int id) {
         Customer customer = em.find(Customer.class, id);
-        if (customer!=null){
+        if (customer != null) {
             em.remove(customer);
             return id;
-        }
-        else
+        } else
             return 0;
     }
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Customer findCustomerByName(String name) {
-        if(name != null && !name.equals("")) {
+        if (name != null && !name.equals("")) {
             return (Customer) em.createQuery("FROM Customer c where c.name = :customerName").
                     setParameter("customerName", name).getSingleResult();
         } else

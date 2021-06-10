@@ -1,6 +1,7 @@
 package it.distributedsystems.model.ejb;
 
 //import it.distributedsystems.model.logging.OperationLogger;
+
 import it.distributedsystems.model.dao.*;
 import it.distributedsystems.model.logging.OperationLogger;
 
@@ -18,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PersistenceContext;
 
 
-
 @Stateless
 @Local(ProductDAO.class)
 //@Remote(ProductDAO.class)  //-> TODO: serve nella versione clustering???
@@ -32,7 +32,7 @@ public class EJB3ProductDAO implements ProductDAO {
     @Interceptors(OperationLogger.class)
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int insertProduct(Product product) {
-        if(product.getProducer()!=null && product.getProducer().getId()>0)
+        if (product.getProducer() != null && product.getProducer().getId() > 0)
             product.setProducer(em.merge(product.getProducer()));
 
         em.persist(product);
@@ -45,17 +45,16 @@ public class EJB3ProductDAO implements ProductDAO {
 
         Product product = (Product) em.createQuery("from Product p where p.name = :num").
                 setParameter("num", productNumber).getSingleResult();
-        if (product!=null){
+        if (product != null) {
             int id = product.getId();
             //Cancello le associazioni tra il prodotto da rimuovere e gli ordini in cui è contenuto
             //dalla tabella di associazione Purchase_Product
-            em.createNativeQuery("DELETE FROM Purchase_Product WHERE product_id="+id+" ;").executeUpdate();
+            em.createNativeQuery("DELETE FROM Purchase_Product WHERE product_id=" + id + " ;").executeUpdate();
 
             em.remove(product);
 
             return id;
-        }
-        else
+        } else
             return 0;
     }
 
@@ -63,16 +62,15 @@ public class EJB3ProductDAO implements ProductDAO {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public int removeProductById(int id) {
         Product product = em.find(Product.class, id);
-        if (product!=null){
+        if (product != null) {
             //Cancello le associazioni tra il prodotto da rimuovere e gli ordini in cui è contenuto
             //dalla tabella di associazione Purchase_Product
-            em.createNativeQuery("DELETE FROM Purchase_Product WHERE product_id="+product.getId()+" ;").executeUpdate();
+            em.createNativeQuery("DELETE FROM Purchase_Product WHERE product_id=" + product.getId() + " ;").executeUpdate();
 
             em.remove(product);
 
             return id;
-        }
-        else
+        } else
             return 0;
     }
 

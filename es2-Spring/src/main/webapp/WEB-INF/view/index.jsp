@@ -57,8 +57,6 @@
 <body>
 
 <%
-    // can't use builtin object 'application' while in a declaration!
-    // must be in a scriptlet or expression!
     //DAOFactory daoFactory = DAOFactory.getDAOFactory(application.getInitParameter("com.dao"));
     CustomerDAO customerDAO = new ImplCustomerDAO();
     PurchaseDAO purchaseDAO = new ImplPurchaseDAO();

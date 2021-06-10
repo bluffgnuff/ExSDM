@@ -1,20 +1,27 @@
+
 package com.initializer;
 
+import com.dao.*;
+import com.model.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServlet;
+public class InitDB {
+    @Autowired
+    NewProducerDAO customerDAO;
+    public InitDB(){}
 
-//@WebServlet(name = "HibernateServlet", urlPatterns = {"initdb"}, loadOnStartup = 1)
-public class InitDB extends HttpServlet {
-
-    /*protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        initSessionFactory(response);
+    public void initializeDB() {
+        Customer customer = new Customer("Maria");
+        customerDAO.save(customer);
     }
+}
+        /*CustomerDAO customerDAO = new ImplCustomerDAO();*//*
 
-    private void initSessionFactory(HttpServletResponse response) throws IOException {
+        PurchaseDAO purchaseDAO = new ImplPurchaseDAO();
+        ProductDAO productDAO = new ImplProductDAO();
+        */
+        /*Session session = HibernateUtil.getSessionFactory().openSession();*//*
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
         HashSet<Purchase> purchases = new HashSet();
         HashSet<Product> set = new HashSet();
         HashSet<Product> set2 = new HashSet();
@@ -62,30 +69,42 @@ public class InitDB extends HttpServlet {
         purchases.add(purchase);
         //Purchase Customer
         customer.setPurchases(purchases);
+        System.out.println("Begin DB init");
+        */
+        /*session.beginTransaction();*//*
 
-        session.beginTransaction();
-        session.save(customer);
-        session.save(producer);
-        session.save(producer2);
-        session.save(product10);
+        customerDAO.insertCustomer(customer);
+        */
+        /*session.save(customer);*//*
+
+        producerDAO.insertProducer(producer);
+        producerDAO.insertProducer(producer2);
+        */
+        /*session.save(producer);*//*
+
+         */
+        /*session.save(producer2);*//*
+
+        productDAO.insertProduct(product10);
+        productDAO.insertProduct(product11);
+        productDAO.insertProduct(product20);
+        productDAO.insertProduct(product21);
+        */
+/*session.save(product10);
         session.save(product11);
         session.save(product20);
-        session.save(product21);
-        session.save(purchase);
-        session.getTransaction().commit();
+        session.save(product21);*//*
 
-        session.disconnect();
+        purchaseDAO.insertPurchase(purchase);
+*/
+/*        session.save(purchase);
+        session.getTransaction().commit();*//*
+
+        System.out.println("End DB init");
+        */
+/*session.disconnect();
         session.close();
-        HibernateUtil.shutdown();
+        HibernateUtil.shutdown();*//*
 
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-
-        initSessionFactory(response);
-        }*/
-
-
-}
+}*/

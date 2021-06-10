@@ -72,7 +72,7 @@ public class InitDB extends HttpServlet {
         purchase.setCustomer(customer);
         purchase.setProducts(set);
         //Purchase Prodotto
-        for(Product p : purchase.getProducts())
+        for (Product p : purchase.getProducts())
             p.setPurchase(purchase);
 
         purchases.add(purchase);
@@ -102,10 +102,6 @@ public class InitDB extends HttpServlet {
 
         initSessionFactory(response);
     }
-
-
-
-
 
 
 }

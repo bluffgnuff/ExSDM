@@ -3,16 +3,17 @@ package com.dao;
 import com.model.Producer;
 import com.model.Product;
 import com.model.Purchase;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
+@ComponentScan(basePackages = {"com"})
 @Repository
 public class ImplProductDAO implements ProductDAO {
-    @PersistenceContext
-    EntityManager em;
+    @PersistenceContext(unitName = "entityManagerFactory")
+    private EntityManager em;
 
     @Override
     public int insertProduct(Product product) {

@@ -1,6 +1,7 @@
 package it.distributedsystems.model.ejb;
 
 import javax.naming.InitialContext;
+
 import it.distributedsystems.model.dao.*;
 import org.apache.log4j.Logger;
 

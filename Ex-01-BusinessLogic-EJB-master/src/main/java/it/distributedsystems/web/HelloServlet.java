@@ -24,7 +24,7 @@ public class HelloServlet extends HttpServlet {
         String name = request.getParameter("name");
         if (name == null) name = "World";
         PrintWriter out = response.getWriter();
-        out.println("Hello "+name+"!!!");
+        out.println("Hello " + name + "!!!");
         out.println(ejb.toString());
     }
 }

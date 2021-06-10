@@ -1,18 +1,20 @@
 package com.dao;
 
 import com.model.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class ImplCustomerDAO implements CustomerDAO {
-    @PersistenceContext
-    EntityManager em;
+    @Autowired
+    private EntityManager em;
 
     @Override
+    @Transactional
     public int insertCustomer(Customer customer) {
         em.persist(customer);
         return customer.getId();
@@ -22,7 +24,7 @@ public class ImplCustomerDAO implements CustomerDAO {
     public int removeCustomerByName(String name) {
         Customer customer;
         if (name != null && !name.equals("")) {
-            customer = (Customer) em.createQuery("select c FROM Customer c WHERE c.name = :customerName").setParameter("customerName", name).getSingleResult();
+            customer = (Customer) em.createQuery("select c from Customer c WHERE c.name = :customerName").setParameter("customerName", name).getSingleResult();
             em.remove(customer);
             return customer.getId();
         } else

@@ -13,9 +13,12 @@ public class Producer implements Serializable {
     protected String name;
     protected Set<Product> products;
 
-    public Producer() {}
+    public Producer() {
+    }
 
-    public Producer(String name) { this.name = name; }
+    public Producer(String name) {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue
@@ -37,8 +40,8 @@ public class Producer implements Serializable {
     }
 
     @OneToMany(
-            cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
-            fetch=FetchType.LAZY,
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
             mappedBy = "producer"
     )
     public Set<Product> getProducts() {

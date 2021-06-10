@@ -9,7 +9,7 @@ plugins {
     id 'ear'
 }
 
-def wildfly_home="/home/gnuff/Programmi/wildfly-21.0.2.Final"
+def wildfly_home = "/home/gnuff/Programmi/wildfly-21.0.2.Final"
 
 repositories {
     maven { url "https://repository.jboss.org/nexus/content/groups/public/" }
@@ -17,7 +17,7 @@ repositories {
     maven { url 'https://repository.jboss.org/nexus/content/repositories' }
     maven { url 'https://repository.jboss.org/nexus/content/repositories/thirdparty-releases' }
 
-    maven { url 'https://mvnrepository.com/artifact/org.hibernate/hibernate'}
+    maven { url 'https://mvnrepository.com/artifact/org.hibernate/hibernate' }
 
     mavenLocal()
     mavenCentral()
@@ -70,11 +70,13 @@ dependencies {
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.17.Final'
 
     // https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
-    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final' // --> Entity Manager - persistence.xml
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+    // --> Entity Manager - persistence.xml
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.5.Final'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.5.Final' // --> Entity Manager - persistence.xml --> moved to hibernate core!
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.5.Final'
+    // --> Entity Manager - persistence.xml --> moved to hibernate core!
 
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
@@ -108,14 +110,12 @@ dependencies {
     compile group: 'org.jboss.naming', name: 'jnp-client', version: '5.0.5.Final'
 
 
-
-
     // TESTS ----------------------------------------------------------------------------------------------------
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-task deployEar( ){
+task deployEar() {
 
     println("running dependencies.....")
     dependsOn('ear')
@@ -128,7 +128,7 @@ task deployEar( ){
     delete("$wildfly_home/standalone/deployments/distributed-systems-demo.ear")
     println("old depployments deleted.....")
 
-    copy(){
+    copy() {
         from "$buildDir/libs/distributed-systems-demo.ear"
         into "$wildfly_home/standalone/deployments/"
     }
@@ -136,14 +136,14 @@ task deployEar( ){
     println("Application deployed!")
 }
 
-task testintellijcommit(){
+task testintellijcommit() {
 
     println("works!")
 }
 
 
 // WAR SECTION ---------------------------------------------------------------------------------
-task prepareWar(){
+task prepareWar() {
 
 //    dependsOn('clean')
 //    dependsOn('build')
@@ -204,7 +204,7 @@ war {
 
 // EAR SECTION ---------------------------------------------------------------------------------
 
-task prepareEar(){
+task prepareEar() {
 
 //    dependsOn('clean')
 //    dependsOn('build')
@@ -265,7 +265,7 @@ ear {
 //     All dependencies in the earlib configuration are placed in the 'lib' directory in the EAR archive and are transitive.
 //
 
-    includeEmptyDirs=false
+    includeEmptyDirs = false
 //    from "$buildDir/libs" -> !!!!! WARNING CAUSES A LOOOP !!!!!
 
     appDirName 'src/main/application'  // use application metadata found in this folder
@@ -333,7 +333,7 @@ test {
 ////    }
 //}
 
-task launch_jboss(){
+task launch_jboss() {
 
     doLast {
         println("Launcing JBoss...")
@@ -341,7 +341,7 @@ task launch_jboss(){
         def sout = new StringBuilder(), serr = new StringBuilder()
         def proc = "$wildfly_home/bin/standalone.sh".execute()
         proc.outputStream.close()
-        proc.inputStream.eachLine {println it}
+        proc.inputStream.eachLine { println it }
         proc.waitFor()
         println "out> $sout err> $serr"
     }

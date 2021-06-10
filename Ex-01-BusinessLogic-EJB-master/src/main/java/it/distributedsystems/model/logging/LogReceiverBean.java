@@ -8,6 +8,7 @@ import javax.jms.ObjectMessage;
 import javax.ejb.ActivationConfigProperty;
 
 import org.apache.log4j.Logger;
+
 @MessageDriven(
         mappedName = "LogReceiverBean",
         activationConfig = {

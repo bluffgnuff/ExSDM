@@ -1,3 +1,4 @@
+/*
 package com.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -19,3 +20,4 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
       return new String[] { "/" };
    }
 }
+*/

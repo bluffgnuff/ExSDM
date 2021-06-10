@@ -7,17 +7,18 @@ import javax.jms.*;
 
 public class OperationLogger {
 
-    @Resource(name="InVmConnectionFactory")
+    @Resource(name = "InVmConnectionFactory")
     private ConnectionFactory connectionFactory;
 
-    @Resource(name ="java:/queue/LoggingQueue")
+    @Resource(name = "java:/queue/LoggingQueue")
     private Destination queue;
 
-    public OperationLogger() {	}
+    public OperationLogger() {
+    }
 
     @AroundInvoke
     public Object logOperation(InvocationContext invocationContext)
-            throws Exception{
+            throws Exception {
         //Creazione connessione e sessione JMS
         Connection connection = connectionFactory.createConnection();
         Session session = connection.createSession(false,
@@ -30,8 +31,8 @@ public class OperationLogger {
 
         //invio messaggio
         ObjectMessage message = session.createObjectMessage(
-                "SUCCESSFULLY INVOKED "+invocationContext.getClass().getSimpleName() +
-                        "."+invocationContext.getMethod().getName());
+                "SUCCESSFULLY INVOKED " + invocationContext.getClass().getSimpleName() +
+                        "." + invocationContext.getMethod().getName());
         producer.send(message);
 
         //Chiusura sessione e connessione JMS

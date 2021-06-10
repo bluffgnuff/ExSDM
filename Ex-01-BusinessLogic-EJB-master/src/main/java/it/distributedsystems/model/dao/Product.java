@@ -15,11 +15,17 @@ public class Product implements Serializable {
     protected Purchase purchase;
     protected Producer producer;
 
-    public Product() {}
+    public Product() {
+    }
 
-    public Product(String name) { this.name = name; }
+    public Product(String name) {
+        this.name = name;
+    }
 
-    public Product(String name, int price) { this.name = name; this.price = price; }
+    public Product(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
 
     @Id
     @GeneratedValue
@@ -32,9 +38,13 @@ public class Product implements Serializable {
     }
 
     @Column(unique = true)
-    public int getProductNumber() { return productNumber; }
+    public int getProductNumber() {
+        return productNumber;
+    }
 
-    public void setProductNumber(int productNumber) { this.productNumber = productNumber; }
+    public void setProductNumber(int productNumber) {
+        this.productNumber = productNumber;
+    }
 
     public String getName() {
         return name;
@@ -53,7 +63,7 @@ public class Product implements Serializable {
     }
 
     @ManyToOne(
-            cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     public Purchase getPurchase() {
@@ -65,7 +75,7 @@ public class Product implements Serializable {
     }
 
     @ManyToOne(
-            cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     public Producer getProducer() {

@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.model.Producer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,8 +11,8 @@ import java.util.List;
 
 @Repository
 public class ImplProducerDAO implements ProducerDAO {
-    @PersistenceContext
-    EntityManager em;
+    @PersistenceContext(unitName = "entityManagerFactory")
+    private EntityManager em;
 
     @Override
     public int insertProducer(Producer producer) {
