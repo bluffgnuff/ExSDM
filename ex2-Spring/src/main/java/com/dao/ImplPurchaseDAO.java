@@ -40,7 +40,7 @@ public class ImplPurchaseDAO implements PurchaseDAO {
         if (purchase != null) {
             //Cancello le associazioni tra l'ordine da rimuovere e i prodotti inseriti
             //dalla tabella di associazione Purchase_Product
-            em.createNativeQuery("DELETE FROM Purchase_Product WHERE purchase_id=" + purchase.getId() + " ;").executeUpdate();
+            //em.createNativeQuery("DELETE FROM Purchase_Product WHERE purchase_id=" + purchase.getId() + " ;").executeUpdate();
 
             em.remove(purchase);
 

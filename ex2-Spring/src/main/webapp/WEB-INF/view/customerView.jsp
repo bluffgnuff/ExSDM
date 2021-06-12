@@ -29,7 +29,7 @@
 <div>
     <p>Read Customers:</p>
     <c:forEach var="customer" items="${customers}">
-        ${customer.name} <a href="/delete-customers/${customer.id}">Elimina</a>
+        ${customer.name} <a href="/delete-customer/${customer.id}">Elimina</a></br>
     </c:forEach>
 </div>
 <div>

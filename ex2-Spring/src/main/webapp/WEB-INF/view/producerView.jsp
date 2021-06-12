@@ -30,7 +30,7 @@
 <div>
     <p>Read Producers:</p>
     <c:forEach var="producer" items="${producers}">
-        ${producer.name} <a href="/delete-producers/${producer.id}">Elimina</a>
+        ${producer.name} <a href="/delete-producer/${producer.id}">Elimina</a> </br>
     </c:forEach>
 </div>
 <div>

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showHomePage(ModelMap model) {
-        //TODO:home.jsp
-        return "producerView";
+        return "home";
     }
 }

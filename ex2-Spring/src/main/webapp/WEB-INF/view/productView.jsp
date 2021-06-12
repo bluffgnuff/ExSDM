@@ -28,7 +28,7 @@
 <div>
     <p>Read Products:</p>
     <c:forEach var="product" items="${products}">
-        ${product.name} <a href="/delete-product/${product.id}">Elimina</a>
+        ${product.name} <a href="/delete-product/${product.id}">Elimina</a></br>
     </c:forEach>
 </div>
 <div>

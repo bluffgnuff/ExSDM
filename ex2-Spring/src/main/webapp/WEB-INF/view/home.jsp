@@ -9,8 +9,11 @@
 <body>
 <div>
     <form method="post">
-        <a href="index.jsp">Gestione</a><br>
-        <a href="home.jsp">Acquista</a><br>
+        <a href="customerView">Gestione Clienti</a><br>
+        <a href="producerView">Gestione Produttori</a><br>
+        <a href="productView">Gestione Prodotti</a><br>
+        <a href="purchaseView">Gestione Acquisti</a><br>
+        <a href="shopView">Acquista</a><br>
     </form>
 </div>
 
