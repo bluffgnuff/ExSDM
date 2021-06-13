@@ -13,7 +13,7 @@ public class PurchaseRestController {
     @Autowired
     PurchaseService purchaseService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "insert-purchase/{number}")
+    @RequestMapping(method = RequestMethod.GET, value = "insert-purchase/{purchaseNumber}")
     public void addPurchases(Purchase newPurchase) {
         purchaseService.savePurchase(newPurchase);
     }

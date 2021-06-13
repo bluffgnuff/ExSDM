@@ -22,6 +22,7 @@ public class CustomerController {
         return  mav;
     }
 
+    @AccessControl
     @RequestMapping(method=RequestMethod.POST, value="/insert-customer")
     public String addCustomer(@ModelAttribute("newCustomer") Customer customer) {
         customerService.saveCustomer(customer);

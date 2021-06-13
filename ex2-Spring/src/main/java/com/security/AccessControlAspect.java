@@ -13,9 +13,10 @@ public class AccessControlAspect {
     @Around("@annotation(AccessControl)")
     public Object accessControl(ProceedingJoinPoint joinPoint) throws Throwable {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication.getName()=="admin"){
+        if(authentication.getName().equals("admin")){
             return joinPoint.proceed();
         }
+        //TODO gestione permesso non accordato
             return null;
     }
 }
