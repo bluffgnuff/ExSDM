@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.model.Customer;
+import com.security.AccessControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.service.CustomerService;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class CustomerController {
         return "home";
     }
 
+    @AccessControl
     @RequestMapping(value = "/delete-customer/{id}")
     public String deleteCustomer(@PathVariable String id) {
         customerService.deleteCustomerById(Integer.parseInt(id));

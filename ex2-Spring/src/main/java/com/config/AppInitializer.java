@@ -7,7 +7,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
    @Override
    public Class<?>[] getRootConfigClasses() {
-      return null;
+      return new Class[] {MyWebSecurityConfigurerAdapter.class};
    }
 
    @Override
@@ -19,5 +19,4 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
    public String[] getServletMappings() {
       return new String[] { "/" };
    }
-}
-*/
+}*/
