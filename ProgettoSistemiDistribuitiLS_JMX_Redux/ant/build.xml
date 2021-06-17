@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<project name="Progetto Sistemi Distribuiti LS (versione JMX)" basedir=".." default="prepare">
+
+	<!-- ================ -->
+	<!-- Properties setup -->
+	<!-- ================ -->
+
+	<target 
+		name="set.properties" 
+		description="Sets up properties"
+	>
+		<!-- Environment properties -->
+		<property file="ant/environment.properties"/>
+		<!-- Project properties -->
+		<property file="ant/project.properties"/>
+		<!-- Project structure -->
+	    <property name="src.dir" value="src"/>
+	    <property name="lib.dir" value="lib"/>
+	    <property name="web.dir" value="web"/>
+	    <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
+		<property name="tmp.dir" value="tmp"/>
+		<property name="database.name" value="my_database_name"/>
+		<property name="database.file" value="my_database_file"/>
+	</target>
+
+	<target 
+		name="set.classpath" depends="set.properties" 
+		description="Sets up classpath properties for other tasks"
+	>
+	    <path id="master-classpath">
+	    	<!-- Libraries that have to be available only at development time -->
+	        <fileset dir="${web.dir}/WEB-INF/lib">
+	            <include name="*.jar"/>
+	        </fileset>
+   	    	<!-- Libraries that have to be available at run-time, on the server -->
+	        <fileset dir="${lib.dir}">
+	            <include name="**/*.jar"/>
+	        </fileset>
+	    	<!-- Project classes -->
+	        <pathelement path="${build.dir}"/>
+	    </path>
+	</target>
+
+	<!-- ============= -->
+	<!-- Project tasks -->
+	<!-- ============= -->
+
+	<target 
+		name="clean" depends="set.properties"
+		description="Cleans built classes"
+	>
+        <delete dir="${build.dir}/it"/>
+		<delete>
+			<fileset dir="${tmp.dir}" includes="*"/>
+		</delete>
+	</target>
+
+	<target 
+		name="prepare" depends="set.properties"
+		description="Creates project structure, if needed"
+	>
+        <mkdir dir="${src.dir}"/>
+		<mkdir dir="${lib.dir}"/>
+		<mkdir dir="${web.dir}"/>
+		<mkdir dir="${web.dir}/WEB-INF"/>
+		<mkdir dir="${web.dir}/WEB-INF/lib"/>
+        <mkdir dir="${tmp.dir}"/>
+		<property name="database.name" value="my_database_name"/>
+		<property name="database.file" value="my_database_file"/>
+	</target>
+    
+	<target 
+    	name="build" depends="clean, prepare, set.classpath"
+		description="Compile main source tree java files"
+    >
+        <mkdir dir="${build.dir}"/>
+        <javac 
+        	destdir="${build.dir}" 
+        	debug="true"
+        	deprecation="false" 
+        	optimize="false" 
+        	failonerror="true">
+	            <src path="${src.dir}"/>
+    	        <classpath refid="master-classpath"/>
+        </javac>
+    </target>
+
+	<target name="undeploy" depends="set.properties">
+		<delete file="${deploy.path}/${webapp.name}.war"/>
+	</target>
+	
+    <target 
+    	name="deploy" depends="undeploy, build" 
+    	description="Deploys the application as a WAR file"
+    >
+        <war destfile="${tmp.dir}/${webapp.name}.war"
+             webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+                <include name="**/**"/>
+            </fileset>
+        </war>
+        <copy todir="${deploy.path}" preservelastmodified="true">
+            <fileset dir="${tmp.dir}">
+                <include name="${webapp.name}.war"/>
+            </fileset>
+        </copy>
+    	<delete file="${tmp.dir}/${webapp.name}.war"/>
+    </target>
+
+	<!-- Performs partial update -->
+	<target name="update.css.js.html.jsp.resources" depends="set.properties" description="Updates final resources. Works only for updating html, css, js and jsp files. Otherwise you must redeploy the whole webapp">
+		<copy overwrite="false" todir="${deploy.path}/${webapp.name}">
+            <fileset dir="${web.dir}">
+                <include name="**/**"/>
+            </fileset>
+		</copy> 
+	</target>
+
+    <!-- ============== -->
+	<!-- Database tasks -->
+	<!-- ============== -->
+
+	<target name="hsqldb.database.start" depends="prepare, set.classpath">
+		<java classname="org.hsqldb.Server" fork="yes">
+			<classpath refid="master-classpath" />
+			<arg value="-database.0"/>
+			<arg value="${tmp.dir}/${database.file}"/>
+			<arg value="-dbname.0"/>
+			<arg value="${database.name}"/>
+		</java>
+	</target>
+
+	<target name="hsqldb.database.frontend" depends="set.properties, set.classpath">
+		<java classname="org.hsqldb.util.DatabaseManager" fork="yes">
+			<classpath refid="master-classpath" />
+		</java>
+	</target>
+
+</project>
