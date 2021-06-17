@@ -8,13 +8,6 @@ public class ManagedDAOFactory implements ManagedDAOFactoryMBean{
     private  PooledGenericJDBCDAOFactory pgf;
     private String className;
     ServletContext context;
-
-
-    /*public void setContext(ServletContext context){
-        this.context = context;
-        pgf = (PooledGenericJDBCDAOFactory) DAOFactory.getDAOFactory(context.getInitParameter("daoFactory"));
-        context.setAttribute("daoFactory", context.getInitParameter("daoFactory"));
-    }*/
     public ManagedDAOFactory(ServletContext context){
        this.context = context;
        this.className = context.getInitParameter("daoFactory");
