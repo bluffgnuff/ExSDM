@@ -1,6 +1,5 @@
 package it.unibo.sdls.sampleproject.jmx;
 
-import it.unibo.sdls.sampleproject.dao.DAOFactory;
 import it.unibo.sdls.sampleproject.dao.jdbc.pooled.PooledGenericJDBCDAOFactory;
 
 import javax.servlet.ServletContext;
