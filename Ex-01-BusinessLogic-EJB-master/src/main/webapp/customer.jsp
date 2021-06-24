@@ -103,7 +103,7 @@
         }// end if
     %>
 </div>
-<h2> Add product to cartImpl </h2>
+<h2> Add product to cart </h2>
 <div>
     <%
         List products = productDAO.getAllProducts();
